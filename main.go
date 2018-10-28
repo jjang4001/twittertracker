@@ -1,8 +1,10 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"os"
+	"twittertracker/datastore"
 	"twittertracker/handlers"
 	"twittertracker/middleware"
 
@@ -11,16 +13,27 @@ import (
 )
 
 const (
-	WEBSERVERPORT = ":8080"
+	WEBSERVERPORT = ":3000"
 )
 
 func main() {
+	dbConnectionString := "127.0.0.1:6379"
+	db, err := datastore.NewDatastore(datastore.REDIS, dbConnectionString)
+
+	if err != nil {
+		log.Print(err)
+	}
+
+	defer db.Close()
+	env := datastore.Env{DB: db}
+
 	r := mux.NewRouter()
 
 	// handlers
 
 	r.HandleFunc("/", handlers.HomeHandler)
 	r.HandleFunc("/socket", handlers.SocketHandler)
+	r.Handle("/example/{exampleId}", handlers.ExampleHandler(&env)).Methods("GET", "POST")
 
 	// middleware
 
