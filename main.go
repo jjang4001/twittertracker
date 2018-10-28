@@ -10,14 +10,17 @@ import (
 
 	ghandlers "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-)
-
-const (
-	WEBSERVERPORT = ":3000"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	dbConnectionString := "127.0.0.1:6379"
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	dbConnectionString := os.Getenv("LOCAL_REDIS")
+	port := os.Getenv("PORT")
+
 	db, err := datastore.NewDatastore(datastore.REDIS, dbConnectionString)
 
 	if err != nil {
@@ -39,5 +42,5 @@ func main() {
 
 	http.Handle("/", middleware.ContextExampleHandler(middleware.PanicRecoveryHandler(ghandlers.LoggingHandler(os.Stdout, r))))
 
-	http.ListenAndServe(WEBSERVERPORT, nil)
+	http.ListenAndServe(port, nil)
 }
