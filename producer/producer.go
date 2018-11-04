@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"twittertracker/common"
 
 	"github.com/adjust/rmq"
 	"github.com/dghubble/go-twitter/twitter"
@@ -18,12 +19,12 @@ var taskQueue rmq.Queue
 
 func setupRedisQueue() {
 	dbConnectionString := os.Getenv("LOCAL_REDIS")
-	redisConn := rmq.OpenConnection("queue", "tcp", dbConnectionString, 1)
-	taskQueue = redisConn.OpenQueue("tweets")
+	redisConn := rmq.OpenConnection(common.RedisQueueTag, common.RedisQueueProtocol, dbConnectionString, common.RedisQueueDB)
+	taskQueue = redisConn.OpenQueue(common.RedisQueueName)
 }
 
 func main() {
-	err := godotenv.Load("../.env")
+	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}

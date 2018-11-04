@@ -8,6 +8,7 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+	"twittertracker/common"
 
 	"github.com/adjust/rmq"
 	"github.com/dghubble/go-twitter/twitter"
@@ -15,11 +16,11 @@ import (
 )
 
 // TaskConsumer implements the Consumer interface
-type TaskConsumer struct {
+type taskConsumer struct {
 }
 
 // Consume is the work that will be done by the taskconsumer
-func (consumer *TaskConsumer) Consume(delivery rmq.Delivery) {
+func (consumer *taskConsumer) Consume(delivery rmq.Delivery) {
 	var tweet twitter.Tweet
 	if err := json.Unmarshal([]byte(delivery.Payload()), &tweet); err != nil {
 		// handle error
@@ -35,18 +36,18 @@ func (consumer *TaskConsumer) Consume(delivery rmq.Delivery) {
 }
 
 func main() {
-	err := godotenv.Load("../.env")
+	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
 	fmt.Println("Getting Queue")
 	dbConnectionString := os.Getenv("LOCAL_REDIS")
-	redisConn := rmq.OpenConnection("queue", "tcp", dbConnectionString, 1)
-	taskQueue := redisConn.OpenQueue("tweets")
+	redisConn := rmq.OpenConnection(common.RedisQueueTag, common.RedisQueueProtocol, dbConnectionString, common.RedisQueueDB)
+	taskQueue := redisConn.OpenQueue(common.RedisQueueName)
 	taskQueue.StartConsuming(100, time.Second)
 
-	taskConsumer := &TaskConsumer{}
+	taskConsumer := &taskConsumer{}
 	taskQueue.AddConsumer("task consumer", taskConsumer)
 
 	// Wait for SIGINT and SIGTERM (HIT CTRL-C)
