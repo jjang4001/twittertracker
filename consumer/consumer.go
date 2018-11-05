@@ -9,6 +9,7 @@ import (
 	"syscall"
 	"time"
 	"twittertracker/common"
+	"twittertracker/parser"
 
 	"github.com/adjust/rmq"
 	"github.com/dghubble/go-twitter/twitter"
@@ -29,10 +30,36 @@ func (consumer *taskConsumer) Consume(delivery rmq.Delivery) {
 	}
 
 	// perform task
-	fmt.Println("performing task", tweet.User, tweet.IDStr)
-	fmt.Println(tweet.Text)
-	fmt.Println()
-	delivery.Ack()
+	fmt.Println("Processing a tweet")
+	if tweet.ExtendedTweet != nil {
+		fmt.Println("Extended")
+		printAndParse(tweet.ExtendedTweet.FullText)
+	} else if tweet.Retweeted && tweet.RetweetedStatus != nil {
+		fmt.Println("Retweeted")
+		if tweet.RetweetedStatus.ExtendedTweet != nil {
+			fmt.Println("Extended")
+			printAndParse(tweet.RetweetedStatus.ExtendedTweet.FullText)
+		} else {
+			fmt.Println("Normal")
+			printAndParse(tweet.RetweetedStatus.Text)
+		}
+	} else if tweet.Retweeted {
+		fmt.Println("RT")
+		printAndParse(tweet.Text)
+	} else {
+		fmt.Println("Normal")
+		fmt.Println(tweet.QuotedStatus != nil)
+		printAndParse(tweet.Text)
+	}
+	fmt.Println("=======================================")
+	delivery.Reject()
+	// delivery.Ack()
+}
+
+func printAndParse(text string) {
+	fmt.Println(text)
+	fmt.Println("-------------------------------------")
+	fmt.Println(parser.GetWords(text))
 }
 
 func main() {
