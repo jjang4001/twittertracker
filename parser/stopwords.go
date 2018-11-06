@@ -187,4 +187,6 @@ var Stopwords = map[string]bool{
 	"won't":      true,
 	"wouldn":     true,
 	"wouldn't":   true,
+	"\t":         true,
+	"\n":         true,
 	"":           true}
