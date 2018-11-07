@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -11,6 +12,7 @@ import (
 	"twittertracker/parser"
 
 	"github.com/adjust/rmq"
+	"github.com/dghubble/go-twitter/twitter"
 	"github.com/joho/godotenv"
 )
 
@@ -20,11 +22,18 @@ type taskConsumer struct {
 
 // Consume is the work that will be done by the taskconsumer
 func (consumer *taskConsumer) Consume(delivery rmq.Delivery) {
-	var words []string
+	var tweet twitter.Tweet
+
 	fmt.Println("Printing JSON")
-	if err := parser.GetWordsFromTweet(string(delivery.Payload()), &words); err != nil {
+	payload := delivery.Payload()
+	fmt.Println(payload)
+
+	if err := json.Unmarshal([]byte(payload), &tweet); err != nil {
+		// handle error
 		delivery.Reject()
+		return
 	}
+	parser.GetWordsFromTweet(tweet)
 	delivery.Ack()
 }
 

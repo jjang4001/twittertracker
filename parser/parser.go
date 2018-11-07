@@ -1,7 +1,6 @@
 package parser
 
 import (
-	"encoding/json"
 	"fmt"
 	"strings"
 	"unicode"
@@ -9,28 +8,15 @@ import (
 	"github.com/dghubble/go-twitter/twitter"
 )
 
-// GetWordsFromTweet takes a string payload tries to parse it as a tweet, removes stopwords, and returns a list of words
-func GetWordsFromTweet(payload string, words []string) error {
-	var tweet twitter.Tweet
-	var finalStrings []string
-	fmt.Println(payload)
-	if err := json.Unmarshal([]byte(payload), &tweet); err != nil {
-		// handle error
-		return err
-	}
-
+// GetWordsFromTweet takes a tweet and tries to parse it as a tweet, removes stopwords, and returns a list of words
+func GetWordsFromTweet(tweet twitter.Tweet) []string {
 	// perform task
 	fmt.Println("Processing a tweet")
-	fmt.Println(tweet.ExtendedTweet)
 	if tweet.RetweetedStatus != nil {
 		fmt.Println("Retweeted")
-		finalStrings = retrieveCorrectType(*tweet.RetweetedStatus)
-	} else {
-		finalStrings = retrieveCorrectType(tweet)
+		return retrieveCorrectType(*tweet.RetweetedStatus)
 	}
-	words = finalStrings[:]
-	fmt.Println("=======================================")
-	return nil
+	return retrieveCorrectType(tweet)
 }
 
 func getWords(tweetText string) []string {
@@ -74,6 +60,7 @@ func PrintAndParse(text string) []string {
 	fmt.Println("-------------------------------------")
 	words := getWords(strings.Replace(text, "\n", " ", -1))
 	fmt.Println(words)
+	fmt.Println("=======================================")
 	return words
 }
 
