@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"twittertracker/common"
 	"twittertracker/models"
 
 	"github.com/mediocregopher/radix.v2/pool"
@@ -15,7 +16,7 @@ type RedisDatastore struct {
 
 func NewRedisDatastore(address string) (*RedisDatastore, error) {
 
-	connectionPool, err := pool.New("tcp", address, 10)
+	connectionPool, err := pool.New(common.RedisQueueProtocol, address, 10)
 	if err != nil {
 		return nil, err
 	}
@@ -26,7 +27,7 @@ func NewRedisDatastore(address string) (*RedisDatastore, error) {
 
 func (r *RedisDatastore) CreateExample(example *models.Example) error {
 
-	if r.Cmd("SET", example.ExampleId, example.ExampleValue).Err != nil {
+	if r.Cmd(common.SET, example.ExampleId, example.ExampleValue).Err != nil {
 		return errors.New("Failed to execute Redis SET command")
 	}
 
@@ -35,7 +36,7 @@ func (r *RedisDatastore) CreateExample(example *models.Example) error {
 
 func (r *RedisDatastore) GetExample(exampleId string) (*models.Example, error) {
 
-	exists, err := r.Cmd("EXISTS", exampleId).Int()
+	exists, err := r.Cmd(common.EXISTS, exampleId).Int()
 
 	if err != nil {
 		return nil, err
@@ -43,7 +44,7 @@ func (r *RedisDatastore) GetExample(exampleId string) (*models.Example, error) {
 		return nil, nil
 	}
 
-	exampleVal, err := r.Cmd("GET", exampleId).Str()
+	exampleVal, err := r.Cmd(common.GET, exampleId).Str()
 	fmt.Println(exampleVal)
 
 	if err != nil {
@@ -56,7 +57,7 @@ func (r *RedisDatastore) GetExample(exampleId string) (*models.Example, error) {
 }
 
 func (r *RedisDatastore) SaveWord(word string) error {
-	if r.Cmd("INCR", word).Err != nil {
+	if r.Cmd(common.INCR, word).Err != nil {
 		return errors.New("Failed to increment key" + word + "by 1")
 	}
 

@@ -18,7 +18,7 @@ import (
 var taskQueue rmq.Queue
 
 func setupRedisQueue() {
-	dbConnectionString := os.Getenv("LOCAL_REDIS")
+	dbConnectionString := os.Getenv(common.LOCAL_REDIS)
 	redisConn := rmq.OpenConnection(common.RedisQueueTag, common.RedisQueueProtocol, dbConnectionString, common.RedisQueueDB)
 	taskQueue = redisConn.OpenQueue(common.RedisQueueName)
 }
@@ -28,10 +28,10 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	consumerKey := os.Getenv("CONSUMER_KEY")
-	consumerSecret := os.Getenv("CONSUMER_SECRET")
-	accessKey := os.Getenv("ACCESS_KEY")
-	accessSecret := os.Getenv("ACCESS_SECRET")
+	consumerKey := os.Getenv(common.CONSUMER_KEY)
+	consumerSecret := os.Getenv(common.CONSUMER_SECRET)
+	accessKey := os.Getenv(common.ACCESS_KEY)
+	accessSecret := os.Getenv(common.ACCESS_SECRET)
 	setupRedisQueue()
 
 	config := oauth1.NewConfig(consumerKey, consumerSecret)

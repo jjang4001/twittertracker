@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"twittertracker/common"
 	"twittertracker/datastore"
 	"twittertracker/handlers"
 	"twittertracker/middleware"
@@ -18,8 +19,8 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	dbConnectionString := os.Getenv("LOCAL_REDIS")
-	port := os.Getenv("PORT")
+	dbConnectionString := os.Getenv(common.LOCAL_REDIS)
+	port := os.Getenv(common.PORT)
 
 	db, err := datastore.NewDatastore(datastore.REDIS, dbConnectionString)
 
@@ -36,7 +37,7 @@ func main() {
 
 	r.HandleFunc("/", handlers.HomeHandler)
 	r.HandleFunc("/socket", handlers.SocketHandler)
-	r.Handle("/example/{exampleId}", handlers.ExampleHandler(&env)).Methods("GET", "POST")
+	r.Handle("/example/{exampleId}", handlers.ExampleHandler(&env)).Methods(common.GET, common.POST)
 
 	// middleware
 

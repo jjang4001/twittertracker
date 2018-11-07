@@ -22,7 +22,7 @@ func main() {
 	}
 
 	fmt.Println("Getting Queue")
-	dbConnectionString := os.Getenv("LOCAL_REDIS")
+	dbConnectionString := os.Getenv(common.LOCAL_REDIS)
 	redisConn := rmq.OpenConnection(common.RedisQueueTag, common.RedisQueueProtocol, dbConnectionString, common.RedisQueueDB)
 	taskQueue := redisConn.OpenQueue(common.RedisQueueName)
 	taskQueue.StartConsuming(100, time.Second)
@@ -35,7 +35,7 @@ func main() {
 
 	env := datastore.Env{DB: db}
 	taskConsumer := &consumer.TaskConsumer{DbEnv: &env}
-	taskQueue.AddConsumer("task consumer", taskConsumer)
+	taskQueue.AddConsumer(common.TASK_CONSUMER, taskConsumer)
 
 	// Wait for SIGINT and SIGTERM (HIT CTRL-C)
 	ch := make(chan os.Signal)
