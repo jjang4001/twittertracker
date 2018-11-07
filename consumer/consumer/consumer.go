@@ -31,13 +31,20 @@ func (consumer *TaskConsumer) Consume(delivery rmq.Delivery) {
 
 	parsedWords := make(chan string)
 	go parser.GetWordsFromTweet(tweet, parsedWords)
+	if consumer.DbEnv.DB.BeginTransaction() != nil {
+		delivery.Reject()
+	}
 	saveWord(parsedWords, consumer.DbEnv)
+	if consumer.DbEnv.DB.ExecTransaction() != nil {
+		delivery.Reject()
+	}
+	fmt.Println("Successfully saved to redis")
 	delivery.Ack()
 }
 
 func saveWord(parsedWords <-chan string, dbEnv *datastore.Env) {
 	for word := range parsedWords {
-		fmt.Println("saving word:", word)
+		fmt.Println("Adding to transaction:", word)
 		dbEnv.DB.SaveWord(word)
 	}
 }

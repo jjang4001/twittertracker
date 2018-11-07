@@ -9,6 +9,8 @@ type Datastore interface {
 	CreateExample(user *models.Example) error
 	GetExample(username string) (*models.Example, error)
 	SaveWord(word string) error
+	BeginTransaction() error
+	ExecTransaction() error
 	Close()
 }
 
@@ -24,6 +26,6 @@ func NewDatastore(datastoreType int, dbConnectionString string) (Datastore, erro
 	case REDIS:
 		return NewRedisDatastore(dbConnectionString)
 	default:
-		return nil, errors.New("The datastore you specified does not exist!")
+		return nil, errors.New("The datastore you specified does not exist")
 	}
 }

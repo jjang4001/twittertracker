@@ -19,8 +19,8 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	dbConnectionString := os.Getenv(common.LOCAL_REDIS)
-	port := os.Getenv(common.PORT)
+	dbConnectionString := os.Getenv(common.LocalRedis)
+	port := os.Getenv(common.Port)
 
 	db, err := datastore.NewDatastore(datastore.REDIS, dbConnectionString)
 
@@ -37,7 +37,7 @@ func main() {
 
 	r.HandleFunc("/", handlers.HomeHandler)
 	r.HandleFunc("/socket", handlers.SocketHandler)
-	r.Handle("/example/{exampleId}", handlers.ExampleHandler(&env)).Methods(common.GET, common.POST)
+	r.Handle("/example/{exampleId}", handlers.ExampleHandler(&env)).Methods(common.Get, common.Post)
 
 	// middleware
 

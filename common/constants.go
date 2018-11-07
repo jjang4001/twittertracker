@@ -13,21 +13,23 @@ const RedisQueueName = "tweets"
 const RedisQueueProtocol = "tcp"
 
 // Redis message queue constants
-const TASK_CONSUMER = "tweet consumer"
+const TaskConsumer = "tweet consumer"
 
 // Local environment variables
-const LOCAL_REDIS = "LOCAL_REDIS"
-const PORT = "PORT"
-const CONSUMER_KEY = "CONSUMER_KEY"
-const CONSUMER_SECRET = "CONSUMER_SECRET"
-const ACCESS_KEY = "ACCESS_KEY"
-const ACCESS_SECRET = "ACCESS_SECRET"
+const LocalRedis = "LOCAL_REDIS"
+const Port = "PORT"
+const ConsumerKey = "CONSUMER_KEY"
+const ConsumerSecret = "CONSUMER_SECRET"
+const AccessKey = "ACCESS_KEY"
+const AccessSecret = "ACCESS_SECRET"
 
 // Redis commands
-const SET = "SET"
-const EXISTS = "EXISTS"
-const GET = "GET"
-const INCR = "INCR"
+const Set = "SET"
+const Exists = "EXISTS"
+const Get = "GET"
+const Incr = "INCR"
+const Multi = "MULTI"
+const Exec = "EXEC"
 
 // Handler methods
-const POST = "POST"
+const Post = "POST"
