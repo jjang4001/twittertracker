@@ -9,6 +9,7 @@ import (
 	"syscall"
 	"time"
 	"twittertracker/common"
+	"twittertracker/parser"
 
 	"github.com/adjust/rmq"
 	"github.com/dghubble/go-twitter/twitter"
@@ -22,16 +23,17 @@ type taskConsumer struct {
 // Consume is the work that will be done by the taskconsumer
 func (consumer *taskConsumer) Consume(delivery rmq.Delivery) {
 	var tweet twitter.Tweet
-	if err := json.Unmarshal([]byte(delivery.Payload()), &tweet); err != nil {
+
+	fmt.Println("Printing JSON")
+	payload := delivery.Payload()
+	fmt.Println(payload)
+
+	if err := json.Unmarshal([]byte(payload), &tweet); err != nil {
 		// handle error
 		delivery.Reject()
 		return
 	}
-
-	// perform task
-	fmt.Println("performing task", tweet.User, tweet.IDStr)
-	fmt.Println(tweet.Text)
-	fmt.Println()
+	parser.GetWordsFromTweet(tweet)
 	delivery.Ack()
 }
 

@@ -1,0 +1,383 @@
+{
+    "coordinates": null,
+    "created_at": "Mon Nov 05 23:33:16 +0000 2018",
+    "current_user_retweet": null,
+    "entities": {
+        "hashtags": [],
+        "media": null,
+        "urls": [],
+        "user_mentions": [
+            {
+                "indices": [
+                    3,
+                    14
+                ],
+                "id": 822215673812119553,
+                "id_str": "822215673812119553",
+                "name": "The White House",
+                "screen_name": "WhiteHouse"
+            },
+            {
+                "indices": [
+                    26,
+                    42
+                ],
+                "id": 25073877,
+                "id_str": "25073877",
+                "name": "Donald J. Trump",
+                "screen_name": "realDonaldTrump"
+            }
+        ]
+    },
+    "favorite_count": 0,
+    "favorited": false,
+    "filter_level": "low",
+    "id": 1059589493521436673,
+    "id_str": "1059589493521436673",
+    "in_reply_to_screen_name": "",
+    "in_reply_to_status_id": 0,
+    "in_reply_to_status_id_str": "",
+    "in_reply_to_user_id": 0,
+    "in_reply_to_user_id_str": "",
+    "lang": "en",
+    "possibly_sensitive": false,
+    "retweet_count": 0,
+    "retweeted": false,
+    "retweeted_status": {
+        "coordinates": null,
+        "created_at": "Mon Nov 05 22:38:06 +0000 2018",
+        "current_user_retweet": null,
+        "entities": {
+            "hashtags": [],
+            "media": null,
+            "urls": [
+                {
+                    "indices": [
+                        116,
+                        139
+                    ],
+                    "display_url": "twitter.com/i/web/status/1…",
+                    "expanded_url": "https://twitter.com/i/web/status/1059575610153013253",
+                    "url": "https://t.co/MG6T4KxpZ1"
+                }
+            ],
+            "user_mentions": [
+                {
+                    "indices": [
+                        10,
+                        26
+                    ],
+                    "id": 25073877,
+                    "id_str": "25073877",
+                    "name": "Donald J. Trump",
+                    "screen_name": "realDonaldTrump"
+                }
+            ]
+        },
+        "favorite_count": 1342,
+        "favorited": false,
+        "filter_level": "low",
+        "id": 1059575610153013253,
+        "id_str": "1059575610153013253",
+        "in_reply_to_screen_name": "",
+        "in_reply_to_status_id": 0,
+        "in_reply_to_status_id_str": "",
+        "in_reply_to_user_id": 0,
+        "in_reply_to_user_id_str": "",
+        "lang": "en",
+        "possibly_sensitive": false,
+        "retweet_count": 455,
+        "retweeted": false,
+        "retweeted_status": null,
+        "source": "\u003ca href=\"https://www.whitehouse.gov/\" rel=\"nofollow\"\u003eWH Digital\u003c/a\u003e",
+        "scopes": null,
+        "text": "President @realDonaldTrump has landed in the Hoosier State! From tax cuts to soaring median income, more Indianans… https://t.co/MG6T4KxpZ1",
+        "full_text": "",
+        "display_text_range": [
+            0,
+            140
+        ],
+        "place": null,
+        "truncated": true,
+        "user": {
+            "contributors_enabled": false,
+            "created_at": "Thu Jan 19 22:54:27 +0000 2017",
+            "default_profile": true,
+            "default_profile_image": false,
+            "description": "Welcome to @WhiteHouse! Follow for the latest from President @realDonaldTrump and his Administration. Tweets may be archived: http://whitehouse.gov/privacy",
+            "email": "",
+            "entities": null,
+            "favourites_count": 9,
+            "follow_request_sent": false,
+            "following": false,
+            "followers_count": 17568310,
+            "friends_count": 12,
+            "geo_enabled": true,
+            "id": 822215673812119553,
+            "id_str": "822215673812119553",
+            "is_translator": false,
+            "lang": "en",
+            "listed_count": 8961,
+            "location": "Washington, D.C.",
+            "name": "The White House",
+            "notifications": false,
+            "profile_background_color": "F5F8FA",
+            "profile_background_image_url": "",
+            "profile_background_image_url_https": "",
+            "profile_background_tile": false,
+            "profile_banner_url": "https://pbs.twimg.com/profile_banners/822215673812119553/1508763959",
+            "profile_image_url": "http://pbs.twimg.com/profile_images/822251886988267520/28GpoRsy_normal.jpg",
+            "profile_image_url_https": "https://pbs.twimg.com/profile_images/822251886988267520/28GpoRsy_normal.jpg",
+            "profile_link_color": "1DA1F2",
+            "profile_sidebar_border_color": "C0DEED",
+            "profile_sidebar_fill_color": "DDEEF6",
+            "profile_text_color": "333333",
+            "profile_use_background_image": true,
+            "protected": false,
+            "screen_name": "WhiteHouse",
+            "show_all_inline_media": false,
+            "status": null,
+            "statuses_count": 5955,
+            "time_zone": "",
+            "url": "http://www.WhiteHouse.gov",
+            "utc_offset": 0,
+            "verified": true,
+            "withheld_in_countries": null,
+            "withheld_scope": ""
+        },
+        "withheld_copyright": false,
+        "withheld_in_countries": null,
+        "withheld_scope": "",
+        "extended_entities": null,
+        "extended_tweet": {
+            "full_text": "President @realDonaldTrump has landed in the Hoosier State! From tax cuts to soaring median income, more Indianans are thriving in the Trump Economy. https://t.co/BUleslZ3lG",
+            "display_text_range": [
+                0,
+                149
+            ],
+            "entities": {
+                "hashtags": [],
+                "media": [
+                    {
+                        "indices": [
+                            150,
+                            173
+                        ],
+                        "display_url": "pic.twitter.com/BUleslZ3lG",
+                        "expanded_url": "https://twitter.com/WhiteHouse/status/1059575610153013253/video/1",
+                        "url": "https://t.co/BUleslZ3lG",
+                        "id": 1059575590364286977,
+                        "id_str": "1059575590364286977",
+                        "media_url": "http://pbs.twimg.com/ext_tw_video_thumb/1059575590364286977/pu/img/cZeZYomXHl3onidw.jpg",
+                        "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1059575590364286977/pu/img/cZeZYomXHl3onidw.jpg",
+                        "source_status_id": 0,
+                        "source_status_id_str": "",
+                        "type": "video",
+                        "sizes": {
+                            "thumb": {
+                                "w": 150,
+                                "h": 150,
+                                "resize": "crop"
+                            },
+                            "large": {
+                                "w": 1280,
+                                "h": 720,
+                                "resize": "fit"
+                            },
+                            "medium": {
+                                "w": 1200,
+                                "h": 675,
+                                "resize": "fit"
+                            },
+                            "small": {
+                                "w": 680,
+                                "h": 383,
+                                "resize": "fit"
+                            }
+                        },
+                        "video_info": {
+                            "aspect_ratio": [
+                                16,
+                                9
+                            ],
+                            "duration_millis": 16000,
+                            "variants": [
+                                {
+                                    "content_type": "video/mp4",
+                                    "bitrate": 256000,
+                                    "url": "https://video.twimg.com/ext_tw_video/1059575590364286977/pu/vid/320x180/9JJoqxFv3H2rhzi4.mp4?tag=5"
+                                },
+                                {
+                                    "content_type": "application/x-mpegURL",
+                                    "bitrate": 0,
+                                    "url": "https://video.twimg.com/ext_tw_video/1059575590364286977/pu/pl/dqwVrUDH0dOE_hOQ.m3u8?tag=5"
+                                },
+                                {
+                                    "content_type": "video/mp4",
+                                    "bitrate": 832000,
+                                    "url": "https://video.twimg.com/ext_tw_video/1059575590364286977/pu/vid/640x360/I8i9uYBGOHaAchjl.mp4?tag=5"
+                                },
+                                {
+                                    "content_type": "video/mp4",
+                                    "bitrate": 2176000,
+                                    "url": "https://video.twimg.com/ext_tw_video/1059575590364286977/pu/vid/1280x720/eG6zxf7i1Tr1IkSo.mp4?tag=5"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "urls": [],
+                "user_mentions": [
+                    {
+                        "indices": [
+                            10,
+                            26
+                        ],
+                        "id": 25073877,
+                        "id_str": "25073877",
+                        "name": "Donald J. Trump",
+                        "screen_name": "realDonaldTrump"
+                    }
+                ]
+            },
+            "extended_entities": {
+                "media": [
+                    {
+                        "indices": [
+                            150,
+                            173
+                        ],
+                        "display_url": "pic.twitter.com/BUleslZ3lG",
+                        "expanded_url": "https://twitter.com/WhiteHouse/status/1059575610153013253/video/1",
+                        "url": "https://t.co/BUleslZ3lG",
+                        "id": 1059575590364286977,
+                        "id_str": "1059575590364286977",
+                        "media_url": "http://pbs.twimg.com/ext_tw_video_thumb/1059575590364286977/pu/img/cZeZYomXHl3onidw.jpg",
+                        "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1059575590364286977/pu/img/cZeZYomXHl3onidw.jpg",
+                        "source_status_id": 0,
+                        "source_status_id_str": "",
+                        "type": "video",
+                        "sizes": {
+                            "thumb": {
+                                "w": 150,
+                                "h": 150,
+                                "resize": "crop"
+                            },
+                            "large": {
+                                "w": 1280,
+                                "h": 720,
+                                "resize": "fit"
+                            },
+                            "medium": {
+                                "w": 1200,
+                                "h": 675,
+                                "resize": "fit"
+                            },
+                            "small": {
+                                "w": 680,
+                                "h": 383,
+                                "resize": "fit"
+                            }
+                        },
+                        "video_info": {
+                            "aspect_ratio": [
+                                16,
+                                9
+                            ],
+                            "duration_millis": 16000,
+                            "variants": [
+                                {
+                                    "content_type": "video/mp4",
+                                    "bitrate": 256000,
+                                    "url": "https://video.twimg.com/ext_tw_video/1059575590364286977/pu/vid/320x180/9JJoqxFv3H2rhzi4.mp4?tag=5"
+                                },
+                                {
+                                    "content_type": "application/x-mpegURL",
+                                    "bitrate": 0,
+                                    "url": "https://video.twimg.com/ext_tw_video/1059575590364286977/pu/pl/dqwVrUDH0dOE_hOQ.m3u8?tag=5"
+                                },
+                                {
+                                    "content_type": "video/mp4",
+                                    "bitrate": 832000,
+                                    "url": "https://video.twimg.com/ext_tw_video/1059575590364286977/pu/vid/640x360/I8i9uYBGOHaAchjl.mp4?tag=5"
+                                },
+                                {
+                                    "content_type": "video/mp4",
+                                    "bitrate": 2176000,
+                                    "url": "https://video.twimg.com/ext_tw_video/1059575590364286977/pu/vid/1280x720/eG6zxf7i1Tr1IkSo.mp4?tag=5"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "quoted_status_id": 0,
+        "quoted_status_id_str": "",
+        "quoted_status": null
+    },
+    "source": "\u003ca href=\"http://twitter.com/download/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c/a\u003e",
+    "scopes": null,
+    "text": "RT @WhiteHouse: President @realDonaldTrump has landed in the Hoosier State! From tax cuts to soaring median income, more Indianans are thri…",
+    "full_text": "",
+    "display_text_range": [
+        0,
+        0
+    ],
+    "place": null,
+    "truncated": false,
+    "user": {
+        "contributors_enabled": false,
+        "created_at": "Fri Aug 03 23:16:15 +0000 2018",
+        "default_profile": true,
+        "default_profile_image": false,
+        "description": "I’m mad as hell \u0026 I’m not gonna take it anymore! #ChristianConservative #MAGA #BuildTheWall #LiberalismIsAMentalDisorder #Veteran #Bansharia #AmericaFirst",
+        "email": "",
+        "entities": null,
+        "favourites_count": 20391,
+        "follow_request_sent": false,
+        "following": false,
+        "followers_count": 9505,
+        "friends_count": 10225,
+        "geo_enabled": false,
+        "id": 1025520752597106688,
+        "id_str": "1025520752597106688",
+        "is_translator": false,
+        "lang": "en",
+        "listed_count": 1,
+        "location": "",
+        "name": "Jonh Birch",
+        "notifications": false,
+        "profile_background_color": "F5F8FA",
+        "profile_background_image_url": "",
+        "profile_background_image_url_https": "",
+        "profile_background_tile": false,
+        "profile_banner_url": "https://pbs.twimg.com/profile_banners/1025520752597106688/1533338610",
+        "profile_image_url": "http://pbs.twimg.com/profile_images/1055971192174186496/U9JdHXl__normal.jpg",
+        "profile_image_url_https": "https://pbs.twimg.com/profile_images/1055971192174186496/U9JdHXl__normal.jpg",
+        "profile_link_color": "1DA1F2",
+        "profile_sidebar_border_color": "C0DEED",
+        "profile_sidebar_fill_color": "DDEEF6",
+        "profile_text_color": "333333",
+        "profile_use_background_image": true,
+        "protected": false,
+        "screen_name": "BirchJonh",
+        "show_all_inline_media": false,
+        "status": null,
+        "statuses_count": 20902,
+        "time_zone": "",
+        "url": "",
+        "utc_offset": 0,
+        "verified": false,
+        "withheld_in_countries": null,
+        "withheld_scope": ""
+    },
+    "withheld_copyright": false,
+    "withheld_in_countries": null,
+    "withheld_scope": "",
+    "extended_entities": null,
+    "extended_tweet": null,
+    "quoted_status_id": 0,
+    "quoted_status_id_str": "",
+    "quoted_status": null
+}
