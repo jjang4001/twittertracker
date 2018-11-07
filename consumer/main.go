@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -9,33 +8,12 @@ import (
 	"syscall"
 	"time"
 	"twittertracker/common"
-	"twittertracker/parser"
+	"twittertracker/consumer/consumer"
+	"twittertracker/datastore"
 
 	"github.com/adjust/rmq"
-	"github.com/dghubble/go-twitter/twitter"
 	"github.com/joho/godotenv"
 )
-
-// TaskConsumer implements the Consumer interface
-type taskConsumer struct {
-}
-
-// Consume is the work that will be done by the taskconsumer
-func (consumer *taskConsumer) Consume(delivery rmq.Delivery) {
-	var tweet twitter.Tweet
-
-	fmt.Println("Printing JSON")
-	payload := delivery.Payload()
-	fmt.Println(payload)
-
-	if err := json.Unmarshal([]byte(payload), &tweet); err != nil {
-		// handle error
-		delivery.Reject()
-		return
-	}
-	parser.GetWordsFromTweet(tweet)
-	delivery.Ack()
-}
 
 func main() {
 	err := godotenv.Load()
@@ -49,7 +27,14 @@ func main() {
 	taskQueue := redisConn.OpenQueue(common.RedisQueueName)
 	taskQueue.StartConsuming(100, time.Second)
 
-	taskConsumer := &taskConsumer{}
+	db, err := datastore.NewDatastore(datastore.REDIS, dbConnectionString)
+	if err != nil {
+		log.Print(err)
+	}
+	defer db.Close()
+
+	env := datastore.Env{DB: db}
+	taskConsumer := &consumer.TaskConsumer{DbEnv: &env}
 	taskQueue.AddConsumer("task consumer", taskConsumer)
 
 	// Wait for SIGINT and SIGTERM (HIT CTRL-C)

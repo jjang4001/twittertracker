@@ -8,6 +8,7 @@ import (
 type Datastore interface {
 	CreateExample(user *models.Example) error
 	GetExample(username string) (*models.Example, error)
+	SaveWord(word string) error
 	Close()
 }
 

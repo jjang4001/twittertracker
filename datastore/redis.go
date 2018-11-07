@@ -55,6 +55,14 @@ func (r *RedisDatastore) GetExample(exampleId string) (*models.Example, error) {
 	return &models.Example{ExampleId: exampleId, ExampleValue: exampleVal}, nil
 }
 
+func (r *RedisDatastore) SaveWord(word string) error {
+	if r.Cmd("INCR", word).Err != nil {
+		return errors.New("Failed to increment key" + word + "by 1")
+	}
+
+	return nil
+}
+
 func (r *RedisDatastore) Close() {
 	r.Empty()
 }

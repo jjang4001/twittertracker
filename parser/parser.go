@@ -9,21 +9,22 @@ import (
 )
 
 // GetWordsFromTweet takes a tweet and tries to parse it as a tweet, removes stopwords, and returns a list of words
-func GetWordsFromTweet(tweet twitter.Tweet) []string {
+func GetWordsFromTweet(tweet twitter.Tweet, parsedWords chan<- string) {
 	// perform task
 	fmt.Println("Processing a tweet")
 	if tweet.RetweetedStatus != nil {
 		fmt.Println("Retweeted")
-		return retrieveCorrectType(*tweet.RetweetedStatus)
+		retrieveCorrectType(*tweet.RetweetedStatus, parsedWords)
+		return
 	}
-	return retrieveCorrectType(tweet)
+	retrieveCorrectType(tweet, parsedWords)
 }
 
-func getWords(tweetText string) []string {
+func getWords(tweetText string, parsedWords chan<- string) {
 	var words = strings.Split(tweetText, " ")
-	var finalWords []string
-	for i := 0; i < len(words); i++ {
-		word := words[i]
+
+	defer close(parsedWords)
+	for _, word := range words {
 
 		// Pre-trim processing
 		if strings.ContainsRune(word, '@') ||
@@ -34,34 +35,32 @@ func getWords(tweetText string) []string {
 		}
 
 		// Trim
-		word = strings.TrimFunc(strings.ToLower(words[i]), isNonLetter)
+		word = strings.TrimFunc(strings.ToLower(word), isNonLetter)
 
 		// Post-trim processing
 		if !Stopwords[word] {
-			fmt.Println(word)
-			finalWords = append(finalWords, word)
+			fmt.Println("sending word", word)
+			parsedWords <- word
 		}
 	}
-	return finalWords
 }
 
-func retrieveCorrectType(tweet twitter.Tweet) []string {
+func retrieveCorrectType(tweet twitter.Tweet, parsedWords chan<- string) {
 	if tweet.ExtendedTweet != nil {
 		fmt.Println("Extended")
-		return PrintAndParse(tweet.ExtendedTweet.FullText)
+		PrintAndParse(tweet.ExtendedTweet.FullText, parsedWords)
+		return
 	}
 	fmt.Println("Normal")
-	return PrintAndParse(tweet.Text)
+	PrintAndParse(tweet.Text, parsedWords)
 }
 
 // PrintAndParse retrieves the normalized word bag
-func PrintAndParse(text string) []string {
-	fmt.Println(text)
+func PrintAndParse(text string, parsedWords chan<- string) {
+	fmt.Println("PrintAndParse: ", text)
 	fmt.Println("-------------------------------------")
-	words := getWords(strings.Replace(text, "\n", " ", -1))
-	fmt.Println(words)
+	getWords(strings.Replace(text, "\n", " ", -1), parsedWords)
 	fmt.Println("=======================================")
-	return words
 }
 
 func isNonLetter(r rune) bool {
