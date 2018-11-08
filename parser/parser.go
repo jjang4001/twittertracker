@@ -47,20 +47,11 @@ func getWords(tweetText string, parsedWords chan<- string) {
 
 func retrieveCorrectType(tweet twitter.Tweet, parsedWords chan<- string) {
 	if tweet.ExtendedTweet != nil {
-		fmt.Println("Extended")
-		PrintAndParse(tweet.ExtendedTweet.FullText, parsedWords)
+		fullText := tweet.ExtendedTweet.FullText
+		getWords(strings.Replace(fullText, "\n", " ", -1), parsedWords)
 		return
 	}
-	fmt.Println("Normal")
-	PrintAndParse(tweet.Text, parsedWords)
-}
-
-// PrintAndParse retrieves the normalized word bag
-func PrintAndParse(text string, parsedWords chan<- string) {
-	fmt.Println("PrintAndParse: ", text)
-	fmt.Println("-------------------------------------")
-	getWords(strings.Replace(text, "\n", " ", -1), parsedWords)
-	fmt.Println("=======================================")
+	getWords(strings.Replace(tweet.Text, "\n", " ", -1), parsedWords)
 }
 
 func isNonLetter(r rune) bool {
