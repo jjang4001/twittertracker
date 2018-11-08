@@ -1,7 +1,8 @@
-package main
+package tests
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"testing"
 	"twittertracker/parser"
@@ -21,7 +22,19 @@ func Test_GetWordsFromTweet(t *testing.T) {
 		assert.FailNow(err.Error())
 	}
 
-	words := parser.GetWordsFromTweet(tweet)
+	parsedWords := make(chan string)
 	expected := []string{"president", "landed", "hoosier", "state", "tax", "cuts", "soaring", "median", "income", "indianans", "thriving", "trump", "economy"}
-	assert.Equal(expected, words)
+	go parser.GetWordsFromTweet(tweet, parsedWords)
+	receiveWordsFromChannel(parsedWords, expected, t)
+}
+
+func receiveWordsFromChannel(parsedWords <-chan string, expected []string, t *testing.T) {
+	fmt.Println("running receiveWordsFromChannel")
+	assert := assert.New(t)
+	numReceived := 0
+	for word := range parsedWords {
+		assert.Equal(word, expected[numReceived])
+		numReceived++
+		fmt.Println("CHANNEL: ", word)
+	}
 }
