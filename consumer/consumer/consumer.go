@@ -3,8 +3,8 @@ package consumer
 import (
 	"encoding/json"
 	"fmt"
+	"twittertracker/consumer/parser"
 	"twittertracker/datastore"
-	"twittertracker/parser"
 
 	"github.com/adjust/rmq"
 	"github.com/dghubble/go-twitter/twitter"
