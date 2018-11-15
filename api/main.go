@@ -4,10 +4,10 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"twittertracker/api/handlers"
+	"twittertracker/api/middleware"
 	"twittertracker/common"
 	"twittertracker/datastore"
-	"twittertracker/handlers"
-	"twittertracker/middleware"
 
 	ghandlers "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
