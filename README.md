@@ -36,6 +36,19 @@ Make sure your redis server is running.
 run "go run main.go", and then send a POST request to "http://localhost:3000/example/mykey"
 send GET request to the same endpoint, and hopefully everything works.
 
+Docker Instructions:
+1. Download the docker cli
+2. Run
+```
+docker pull redis
+docker run -p 6379:6379 --name twittertrackerredis -d redis
+```
+3. Then to check that the docker instance is running,
+```
+docker container ls
+```
+This should show the information of the redis container you just created, including the port which you can now use in your .env.
+
 ## Setting Up Twitter
 
 Add the following keys in the .env file
