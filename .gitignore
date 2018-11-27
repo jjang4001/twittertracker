@@ -15,3 +15,5 @@
 .env
 .vscode
 dump.rdb
+
+vendor/*/
